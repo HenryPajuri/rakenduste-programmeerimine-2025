@@ -1,0 +1,40 @@
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.about-card {
+  margin-bottom: 2rem;
+}
+
+.about-card:last-child {
+  margin-bottom: 0;
+}
+
+.about-section-title {
+  margin-bottom: 1rem;
+}
+
+.about-text {
+  margin-bottom: 1rem;
+}
+
+.about-chips {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.about-divider {
+  margin: 1rem 0;
+}
+
+.about-footer-text {
+  color: rgba(0, 0, 0, 0.6);
+}
