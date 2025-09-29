@@ -1,0 +1,68 @@
+.home-container {
+  max-width: 1200px;
+}
+
+.home-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.home-subtitle {
+  margin-bottom: 2rem;
+}
+
+.home-grid {
+  gap: 2rem;
+}
+
+.counter-card-content {
+  text-align: center;
+  padding: 2rem;
+}
+
+.counter-display {
+  padding: 2rem;
+  margin: 1.5rem 0;
+  background-color: var(--primary-main, #1976d2);
+  color: var(--primary-contrast-text, #fff);
+  border-radius: 4px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+}
+
+.counter-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.features-card {
+  height: 100%;
+}
+
+.features-card-content {
+  padding: 2rem;
+}
+
+.features-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.features-title .icon {
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.home-footer {
+  margin-top: 3rem;
+  text-align: center;
+}

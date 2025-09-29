@@ -1,35 +1,65 @@
-import { AppBar, Toolbar, Typography, Button } from '@mui/material'
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Box,
+  Container
+} from '@mui/material'
 import { Link, Outlet } from 'react-router-dom'
 import '../styles/Layout.css'
 
 function Layout() {
+  const drawer = (
+    <Box className="drawer-content">
+      <Typography variant="h6" className="drawer-title">
+        My App
+      </Typography>
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/" className="drawer-button">
+            <ListItemText primary="Home" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/something" className="drawer-button">
+            <ListItemText primary="Something" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/about" className="drawer-button">
+            <ListItemText primary="About" />
+          </ListItemButton>
+        </ListItem>
+      </List>
+    </Box>
+  )
+
   return (
-    <div className="layout-container">
-      <AppBar position="static">
-        <Toolbar className="navbar">
-          <Typography variant="h6" component="div" className="app-title">
+    <Box className="layout-main">
+      <AppBar position="fixed" className="app-bar">
+        <Toolbar>
+          <Typography variant="h6" noWrap component="div">
             My App
           </Typography>
-          <div className="nav-buttons">
-            <Button color="inherit" component={Link} to="/">
-              Home
-            </Button>
-            <Button color="inherit" component={Link} to="/something">
-              Something
-            </Button>
-            <Button color="inherit" component={Link} to="/about">
-              About
-            </Button>
-          </div>
         </Toolbar>
       </AppBar>
 
-      <main className="main-content">
-        <div className="content-wrapper">
+      <Drawer variant="permanent" className="drawer-permanent">
+        {drawer}
+      </Drawer>
+
+      <Box component="main" className="main-content-area">
+        <Toolbar />
+        <Container maxWidth="lg">
           <Outlet />
-        </div>
-      </main>
-    </div>
+        </Container>
+      </Box>
+    </Box>
   )
 }
 

@@ -1,4 +1,3 @@
-/* Reset body styles that interfere with our layout */
 body {
   display: block !important;
   place-items: unset !important;
@@ -9,46 +8,40 @@ body {
   min-height: 100vh;
 }
 
-.layout-container {
+.layout-main {
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  width: 100%;
-  margin: 0;
-  padding: 0;
 }
 
-.main-content {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 2rem;
-  flex-grow: 1;
-  width: 100%;
+.app-bar {
+  width: calc(100% - 240px);
+  margin-left: 240px;
+}
+
+.drawer-permanent {
+  width: 240px;
+  flex-shrink: 0;
+}
+
+.drawer-permanent .MuiDrawer-paper {
+  width: 240px;
   box-sizing: border-box;
 }
 
-.content-wrapper {
-  max-width: 800px;
-  width: 100%;
+.drawer-content {
   text-align: center;
-  margin: 0 auto;
+  padding: 1rem 0;
 }
 
-/* Navigation bar styling */
-.navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+.drawer-title {
+  margin: 1rem 0;
 }
 
-.app-title {
-  position: absolute;
-  left: 16px;
+.drawer-button {
+  text-align: center;
 }
 
-.nav-buttons {
-  display: flex;
-  gap: 1rem;
+.main-content-area {
+  flex-grow: 1;
+  padding: 1.5rem;
+  width: calc(100% - 240px);
 }
