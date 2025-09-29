@@ -26,8 +26,8 @@ function Layout() {
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
-          <ListItemButton component={Link} to="/something" className="drawer-button">
-            <ListItemText primary="Something" />
+          <ListItemButton component={Link} to="/profile" className="drawer-button">
+            <ListItemText primary="Profile" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>
