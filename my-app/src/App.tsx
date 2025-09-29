@@ -3,6 +3,7 @@ import Counter from "./components/Counter"
 import EventListener from "./components/EventListener"
 import Ref from "./components/Ref"
 import Form from "./components/Form"
+import Profile from "./components/Profile"
 
 function App() {
   const [show, setShow] = useState<boolean>(true)
@@ -11,6 +12,7 @@ function App() {
   return (
     <>
       <Counter />
+      <Profile />
       {/*  {show && <EventListener />}
       <button onClick={() => setShow(!show)}>Toggle EventListener</button> */}
       {/* {show ? <Ref /> : <div>No Ref</div>}
