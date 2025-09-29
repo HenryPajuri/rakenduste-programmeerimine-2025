@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import "../Dice.css"
 
 const Dice = () => {
   const [diceValue, setDiceValue] = useState<number>(1)
