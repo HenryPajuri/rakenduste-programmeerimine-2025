@@ -1,0 +1,54 @@
+/* Reset body styles that interfere with our layout */
+body {
+  display: block !important;
+  place-items: unset !important;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+  flex-grow: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.content-wrapper {
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* Navigation bar styling */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.app-title {
+  position: absolute;
+  left: 16px;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+}
