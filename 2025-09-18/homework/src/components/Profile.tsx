@@ -14,6 +14,7 @@ import {
 import {
   Star
 } from '@mui/icons-material'
+import useLocalStorage from '../hooks/useLocalStorage'
 import '../styles/Profile.css'
 
 function Profile() {
@@ -22,6 +23,15 @@ function Profile() {
     'Muusika',
     'Reisimine',
   ]
+
+  //useLocalStorage hook to persist form data
+  const [email, setEmail] = useLocalStorage('profile-email', '')
+  const [message, setMessage] = useLocalStorage('profile-message', '')
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    alert(`Email: ${email}\nMessage: ${message}`)
+  }
 
   return (
     <Box className="profile-container">
@@ -58,7 +68,7 @@ function Profile() {
                 Kontakt
               </Typography>
 
-              <Box component="form" className="contact-form">
+              <Box component="form" className="contact-form" onSubmit={handleSubmit}>
                 <Box className="form-group">
                   <Typography variant="body1" component="label" className="form-label">
                     E-mail:
@@ -70,6 +80,8 @@ function Profile() {
                     variant="outlined"
                     size="small"
                     className="form-input"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </Box>
 
@@ -84,11 +96,13 @@ function Profile() {
                     fullWidth
                     variant="outlined"
                     className="form-input"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                   />
                 </Box>
 
                 <Button
-                  type="button"
+                  type="submit"
                   variant="contained"
                   color="success"
                   className="cta-button"
