@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      {/* <Counter /> */}
+      <Counter />
       {/*  {show && <EventListener />}
       <button onClick={() => setShow(!show)}>Toggle EventListener</button> */}
       {/* {show ? <Ref /> : <div>No Ref</div>}
