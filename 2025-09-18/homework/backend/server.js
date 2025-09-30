@@ -27,6 +27,109 @@ app.get('/users', (req, res) => {
   res.json(users)
 })
 
+app.post('/users', (req, res) => {
+  const newUser = {
+    id: users.length + 1,
+    name: req.body.name,
+    email: req.body.email
+  }
+  users.push(newUser)
+  res.status(201).json(newUser)
+})
+
+app.put('/users/:id', (req, res) => {
+  const id = parseInt(req.params.id)
+  const userIndex = users.findIndex(u => u.id === id)
+  if (userIndex === -1) {
+    return res.status(404).json({ error: 'User not found' })
+  }
+  users[userIndex] = { id, name: req.body.name, email: req.body.email }
+  res.json(users[userIndex])
+})
+
+app.delete('/users/:id', (req, res) => {
+  const id = parseInt(req.params.id)
+  const userIndex = users.findIndex(u => u.id === id)
+  if (userIndex === -1) {
+    return res.status(404).json({ error: 'User not found' })
+  }
+  users.splice(userIndex, 1)
+  res.status(204).send()
+})
+
+app.get('/books', (req, res) => {
+  res.json(books)
+})
+
+app.post('/books', (req, res) => {
+  const newBook = {
+    id: books.length + 1,
+    userId: req.body.userId,
+    title: req.body.title,
+    author: req.body.author,
+    year: req.body.year
+  }
+  books.push(newBook)
+  res.status(201).json(newBook)
+})
+
+app.put('/books/:id', (req, res) => {
+  const id = parseInt(req.params.id)
+  const bookIndex = books.findIndex(b => b.id === id)
+  if (bookIndex === -1) {
+    return res.status(404).json({ error: 'Book not found' })
+  }
+  books[bookIndex] = { id, userId: req.body.userId, title: req.body.title, author: req.body.author, year: req.body.year }
+  res.json(books[bookIndex])
+})
+
+app.delete('/books/:id', (req, res) => {
+  const id = parseInt(req.params.id)
+  const bookIndex = books.findIndex(b => b.id === id)
+  if (bookIndex === -1) {
+    return res.status(404).json({ error: 'Book not found' })
+  }
+  books.splice(bookIndex, 1)
+  res.status(204).send()
+})
+
+app.get('/flights', (req, res) => {
+  res.json(flights)
+})
+
+app.post('/flights', (req, res) => {
+  const newFlight = {
+    id: flights.length + 1,
+    from: req.body.from,
+    to: req.body.to,
+    price: req.body.price,
+    airline: req.body.airline,
+    duration: req.body.duration
+  }
+  flights.push(newFlight)
+  res.status(201).json(newFlight)
+})
+
+app.put('/flights/:id', (req, res) => {
+  const id = parseInt(req.params.id)
+  const flightIndex = flights.findIndex(f => f.id === id)
+  if (flightIndex === -1) {
+    return res.status(404).json({ error: 'Flight not found' })
+  }
+  flights[flightIndex] = { id, from: req.body.from, to: req.body.to, price: req.body.price, airline: req.body.airline, duration: req.body.duration }
+  res.json(flights[flightIndex])
+})
+
+app.delete('/flights/:id', (req, res) => {
+  const id = parseInt(req.params.id)
+  const flightIndex = flights.findIndex(f => f.id === id)
+  if (flightIndex === -1) {
+    return res.status(404).json({ error: 'Flight not found' })
+  }
+  flights.splice(flightIndex, 1)
+  res.status(204).send()
+})
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`)
 })
