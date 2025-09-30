@@ -1,11 +1,12 @@
-import { Box, Button, Stack, TextField } from "@mui/material";
+import { Box, Button, Stack, TextField, Paper } from "@mui/material";
 import React, { useState } from "react";
 
 type SubmitCatProps = {
   fetchCats: () => void;
+  showSnackbar: (message: string, severity: "success" | "error") => void;
 };
 
-const SubmitCat = ({ fetchCats }: SubmitCatProps) => {
+const SubmitCat = ({ fetchCats, showSnackbar }: SubmitCatProps) => {
   const [name, setName] = useState("");
 
   const submitCat = async () => {
@@ -20,40 +21,43 @@ const SubmitCat = ({ fetchCats }: SubmitCatProps) => {
       });
 
       if (response.ok) {
-        console.log("Success", response);
-        // Snackbar success
+        showSnackbar("Cat added successfully", "success");
+        setName("");
+        fetchCats();
       } else {
-        console.warn("No success");
-        // Snackbar
+        const errorData = await response.json();
+        showSnackbar(
+          errorData.errors?.[0]?.msg || "Failed to add cat",
+          "error"
+        );
       }
     } catch (error) {
-      console.warn(error);
+      showSnackbar("Error adding cat", "error");
     }
   };
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-
     submitCat();
-    setTimeout(fetchCats, 100);
   };
 
   return (
-    <Box
-      sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-    >
+    <Paper elevation={3} sx={{ p: 3 }}>
       <form onSubmit={handleSubmit}>
-        <Stack>
+        <Stack spacing={2}>
           <TextField
             label="Cat name"
+            value={name}
             onChange={(event) => setName(event.target.value)}
+            fullWidth
+            required
           />
           <Button variant="contained" color="success" type="submit">
-            Add
+            Add Cat
           </Button>
         </Stack>
       </form>
-    </Box>
+    </Paper>
   );
 };
 
