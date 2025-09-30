@@ -91,3 +91,5 @@ exports.delete = (req, res) => {
   todos[todoIndex].updatedAt = Date.now();
   res.json({ message: "Todo deleted successfully" });
 };
+
+exports.todos = todos;
