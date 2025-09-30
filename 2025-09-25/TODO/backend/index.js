@@ -4,12 +4,14 @@ const app = express()
 const port = 3001
 const todosRoutes = require("./routes/todos.routes");
 const adminRoutes = require("./routes/admin.routes");
+const authRoutes = require("./routes/auth.routes");
 
 app.use(cors());
 app.use(express.json());
 
 app.use("/todos", todosRoutes);
 app.use("/admin", adminRoutes);
+app.use("/auth", authRoutes);
 app.get('/', (req, res) => {
   res.send(`
     <h1>TODO API</h1>
@@ -17,6 +19,8 @@ app.get('/', (req, res) => {
     <ul>
       <li><a href="/todos">/todos</a> - TODO CRUD operations</li>
       <li><a href="/admin/todos">/admin/todos</a> - Admin panel (view all todos including deleted)</li>
+      <li>/auth/login - POST endpoint for authentication</li>
+      <li>/auth/ping - GET endpoint for JWT verification</li>
     </ul>
   `)
 })
