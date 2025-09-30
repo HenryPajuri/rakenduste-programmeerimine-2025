@@ -16,7 +16,8 @@ const cats = [
   ];
 
 exports.create = (req, res) => {};
-
+const { name } = (req.body)
+    res.sendStatus(200);
 exports.read = (req, res) => {
     res.send(cats);
 };
