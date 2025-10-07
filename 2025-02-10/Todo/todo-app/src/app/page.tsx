@@ -52,6 +52,20 @@ export default function Home() {
     }
   }
 
+  const handleDelete = async (id: number) => {
+    const { error } = await supabase
+      .from('todos')
+      .delete()
+      .eq('id', id)
+
+    if (error) {
+      setMessage(`Error deleting todo: ${error.message}`)
+    } else {
+      setMessage('Todo deleted successfully!')
+      fetchTodos()
+    }
+  }
+
   return (
     <div>
       <h1>Todo App</h1>
@@ -69,7 +83,10 @@ export default function Home() {
       <h2>Todos</h2>
       <ul>
         {todos.map((todo) => (
-          <li key={todo.id}>{todo.task}</li>
+          <li key={todo.id}>
+            {todo.task}
+            <button onClick={() => handleDelete(todo.id)}>Delete</button>
+          </li>
         ))}
       </ul>
     </div>
