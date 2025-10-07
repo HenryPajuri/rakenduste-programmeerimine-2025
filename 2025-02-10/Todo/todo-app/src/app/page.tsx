@@ -1,11 +1,35 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
+
+type Todo = {
+  id: number
+  task: string
+  created_at: string
+}
 
 export default function Home() {
   const [task, setTask] = useState('')
   const [message, setMessage] = useState('')
+  const [todos, setTodos] = useState<Todo[]>([])
+
+  const fetchTodos = async () => {
+    const { data, error } = await supabase
+      .from('todos')
+      .select('*')
+      .order('created_at', { ascending: false })
+
+    if (error) {
+      setMessage(`Error fetching todos: ${error.message}`)
+    } else {
+      setTodos(data || [])
+    }
+  }
+
+  useEffect(() => {
+    fetchTodos()
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -24,6 +48,7 @@ export default function Home() {
     } else {
       setMessage('Todo created successfully!')
       setTask('')
+      fetchTodos()
     }
   }
 
@@ -40,6 +65,13 @@ export default function Home() {
         <button type="submit">Add Todo</button>
       </form>
       {message && <p>{message}</p>}
+
+      <h2>Todos</h2>
+      <ul>
+        {todos.map((todo) => (
+          <li key={todo.id}>{todo.task}</li>
+        ))}
+      </ul>
     </div>
   )
 }
