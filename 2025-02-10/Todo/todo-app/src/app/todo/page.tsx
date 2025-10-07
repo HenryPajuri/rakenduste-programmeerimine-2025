@@ -67,28 +67,47 @@ export default function TodoPage() {
   }
 
   return (
-    <div>
-      <h1>Todo App</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={task}
-          onChange={(e) => setTask(e.target.value)}
-          placeholder="Enter a task"
-        />
-        <button type="submit">Add Todo</button>
-      </form>
-      {message && <p>{message}</p>}
+    <div className="min-h-screen bg-gray-50 py-8">
+      <div className="max-w-2xl mx-auto px-4">
+        <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">Todo App</h1>
 
-      <h2>Todos</h2>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            {todo.task}
-            <button onClick={() => handleDelete(todo.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+        <form onSubmit={handleSubmit} className="mb-6 flex gap-2">
+          <input
+            type="text"
+            value={task}
+            onChange={(e) => setTask(e.target.value)}
+            placeholder="Enter a task"
+            className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            type="submit"
+            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Add Todo
+          </button>
+        </form>
+
+        {message && (
+          <p className="mb-4 p-3 bg-blue-50 text-blue-700 rounded-lg">{message}</p>
+        )}
+
+        <div className="bg-white rounded-lg shadow">
+          <h2 className="text-2xl font-semibold text-gray-800 p-4 border-b">Todos</h2>
+          <ul className="divide-y">
+            {todos.map((todo) => (
+              <li key={todo.id} className="p-4 flex justify-between items-center hover:bg-gray-50">
+                <span className="text-gray-700">{todo.task}</span>
+                <button
+                  onClick={() => handleDelete(todo.id)}
+                  className="bg-red-600 text-white px-4 py-1 rounded hover:bg-red-700 transition-colors"
+                >
+                  Delete
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   )
 }
