@@ -68,6 +68,27 @@ export default function TodoPage() {
     }
   }
 
+  const handleUpdate = async (id: number) => {
+    if (!editTask.trim()) {
+      setMessage('Please enter a task')
+      return
+    }
+
+    const { error } = await supabase
+      .from('todos')
+      .update({ task: editTask })
+      .eq('id', id)
+
+    if (error) {
+      setMessage(`Error updating todo: ${error.message}`)
+    } else {
+      setMessage('Todo updated successfully!')
+      setEditingId(null)
+      setEditTask('')
+      fetchTodos()
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-2xl mx-auto px-4">
