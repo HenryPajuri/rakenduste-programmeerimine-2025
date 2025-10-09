@@ -89,6 +89,16 @@ export default function TodoPage() {
     }
   }
 
+  const handleEdit = (id: number, currentTask: string) => {
+    setEditingId(id)
+    setEditTask(currentTask)
+  }
+
+  const handleCancelEdit = () => {
+    setEditingId(null)
+    setEditTask('')
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-2xl mx-auto px-4">
