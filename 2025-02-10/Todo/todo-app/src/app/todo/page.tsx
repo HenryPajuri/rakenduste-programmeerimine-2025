@@ -129,13 +129,48 @@ export default function TodoPage() {
           <ul className="divide-y">
             {todos.map((todo) => (
               <li key={todo.id} className="p-4 flex justify-between items-center hover:bg-gray-50">
-                <span className="text-gray-700">{todo.task}</span>
-                <button
-                  onClick={() => handleDelete(todo.id)}
-                  className="bg-red-600 text-white px-4 py-1 rounded hover:bg-red-700 transition-colors"
-                >
-                  Delete
-                </button>
+                {editingId === todo.id ? (
+                  <>
+                    <input
+                      type="text"
+                      value={editTask}
+                      onChange={(e) => setEditTask(e.target.value)}
+                      className="flex-1 px-3 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 mr-2"
+                    />
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => handleUpdate(todo.id)}
+                        className="bg-green-600 text-white px-4 py-1 rounded hover:bg-green-700 transition-colors"
+                      >
+                        Save
+                      </button>
+                      <button
+                        onClick={handleCancelEdit}
+                        className="bg-gray-600 text-white px-4 py-1 rounded hover:bg-gray-700 transition-colors"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <span className="text-gray-700">{todo.task}</span>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => handleEdit(todo.id, todo.task)}
+                        className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 transition-colors"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(todo.id)}
+                        className="bg-red-600 text-white px-4 py-1 rounded hover:bg-red-700 transition-colors"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </>
+                )}
               </li>
             ))}
           </ul>
