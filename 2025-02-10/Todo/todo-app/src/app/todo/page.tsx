@@ -13,6 +13,8 @@ export default function TodoPage() {
   const [task, setTask] = useState('')
   const [message, setMessage] = useState('')
   const [todos, setTodos] = useState<Todo[]>([])
+  const [editingId, setEditingId] = useState<number | null>(null)
+  const [editTask, setEditTask] = useState('')
 
   const fetchTodos = async () => {
     const { data, error } = await supabase
