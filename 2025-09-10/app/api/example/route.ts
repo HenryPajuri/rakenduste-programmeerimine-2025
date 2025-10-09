@@ -1,15 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams;
-  const name = searchParams.get('name') || 'World';
+  return NextResponse.json({ message: 'GET request successful' });
+}
 
-  const data = {
-    message: `Hello, ${name}!`,
-    timestamp: new Date().toISOString(),
-    method: 'GET',
-    path: request.nextUrl.pathname,
-  };
-
-  return NextResponse.json(data, { status: 200 });
+export async function POST(request: NextRequest) {
+  return NextResponse.json({ message: 'POST request successful' });
 }
