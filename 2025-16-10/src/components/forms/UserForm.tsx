@@ -1,13 +1,17 @@
 'use client';
 
 import { useForm } from '@mantine/form';
-import { TextInput, Button, Box, Stack } from '@mantine/core';
+import { TextInput, Button, Box, Stack, Textarea } from '@mantine/core';
+import { DatePickerInput, TimeInput } from '@mantine/dates';
 
 interface UserFormValues {
   firstName: string;
   lastName: string;
   email: string;
   phoneNumber: string;
+  date: Date | null;
+  time: string;
+  description: string;
 }
 
 export default function UserForm() {
@@ -17,6 +21,9 @@ export default function UserForm() {
       lastName: '',
       email: '',
       phoneNumber: '',
+      date: null,
+      time: '',
+      description: '',
     },
     validate: {
       firstName: (value) =>
@@ -29,6 +36,10 @@ export default function UserForm() {
         /^\+?[\d\s\-()]+$/.test(value) && value.replace(/\D/g, '').length >= 7
           ? null
           : 'Invalid phone number',
+      date: (value) => (value ? null : 'Date is required'),
+      time: (value) => (value.trim().length > 0 ? null : 'Time is required'),
+      description: (value) =>
+        value.trim().length >= 10 ? null : 'Description must have at least 10 characters',
     },
   });
 
@@ -67,6 +78,27 @@ export default function UserForm() {
             placeholder="Enter your phone number"
             type="tel"
             {...form.getInputProps('phoneNumber')}
+            required
+          />
+
+          <DatePickerInput
+            label="Date"
+            placeholder="Pick a date"
+            {...form.getInputProps('date')}
+            required
+          />
+
+          <TimeInput
+            label="Time"
+            {...form.getInputProps('time')}
+            required
+          />
+
+          <Textarea
+            label="Description"
+            placeholder="Enter a description (minimum 10 characters)"
+            minRows={3}
+            {...form.getInputProps('description')}
             required
           />
 
