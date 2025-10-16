@@ -31,7 +31,10 @@ export default function Home() {
             <button className="bg-gray-300 px-4 py-2 cursor-pointer">Go to User Form</button>
           </Link>
           <Link href="/api-demo">
-            <button className="bg-gray-300 px-4 py-2 cursor-pointer">Go to API Demo</button>
+            <button className="bg-gray-300 px-4 py-2 cursor-pointer">Go to API Demo (Client)</button>
+          </Link>
+          <Link href="/api-demo-server">
+            <button className="bg-gray-300 px-4 py-2 cursor-pointer">Go to API Demo (Server)</button>
           </Link>
           <a
             className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
