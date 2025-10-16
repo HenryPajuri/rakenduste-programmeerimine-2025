@@ -90,7 +90,9 @@ export default function UserForm() {
 
           <TimeInput
             label="Time"
-            {...form.getInputProps('time')}
+            value={form.values.time}
+            onChange={(event) => form.setFieldValue('time', event.currentTarget.value)}
+            error={form.errors.time}
             required
           />
 
